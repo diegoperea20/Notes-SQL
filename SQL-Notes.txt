@@ -1,0 +1,219 @@
+-- Online SQL Editor to Run SQL Online.
+--https://www.programiz.com/sql/online-compiler/
+-- Use the editor to create new tables, insert data and all other SQL operations.
+
+/*
+--CREATE
+create table Cosa (
+	id int,
+  	name varchar(50)
+);*/
+
+
+-- insert into Hola values (1,"python");
+---insert into Nueva values(5,"diegor");
+-- select first_name, age from Customers;
+
+--borarr
+
+--Delete from Cosa
+--where id=1;
+
+--Actualizar
+--update  Customers
+--set last_name= "uwu" 
+--where customer_id = 1;
+
+--UPDATE Orders SET total = (SELECT SUM(amount) FROM Orders);
+
+--UPDATE Orders
+--SET total = amount * customer_id
+--WHERE order_id = 1;
+
+
+
+--AND , OR , WHERE
+--select * from Customers
+--where age <22 or country= "UK";
+
+--Para evitar hacer muchos OR
+--select * from Customers
+--where age IN (18,15,56,80,28);
+
+-- DISTINCT valores unicos
+--select distinct age  from Customers;
+
+--Between
+--select * from Orders
+--where amount between 250 and 400;
+
+
+-- % : cualquier cosa   , _ : lo que falta
+--LIKE empieza con jo y termina con cualquira cosa
+--select * from Customers
+--where first_name LIKE "Jo%"
+
+--
+--select * from Customers
+--where first_name LIKE "%ob%"
+
+---select * from Orders
+--where item like "Monit_r";
+
+--select * from Customers
+--where first_name NOT LIKE "Jo%";
+
+/**/
+
+--ORDER
+/*
+select * from Customers
+order by age  desc;*/
+
+/*
+select * from Customers
+where first_name= "John" order by age desc ;*/
+
+--LIMIT is for rows
+/*
+select * from Customers
+where age >= 25 
+limit 2;*/
+/*
+
+select * from Customers
+where age >= 25 order by age asc
+limit 2;*/
+
+--AS  renombrar columna 
+--SELECT first_name as primer_nombre from Customers;
+
+-- COUNT contar numero de filas o items 
+--select count(item) as "numero de items", sum(amount) as "total" from Orders;
+
+-- ALTER  : agregar columna 
+---alter table Orders add "total" int;
+ 
+-- ALTER  : eliminar columna  
+--ALTER TABLE Orders  DROP COLUMN "total";
+
+--SUM
+--select sum(amount) as "total" from Orders;
+
+
+--AVERAGE : PROMEDIO 
+--select avg(amount) as "prom"from Orders
+--where amount > 350;
+
+-- min AND max
+--select min(amount) as "minimo" , max(amount) as "max" from Orders;
+
+--GROUOP BY 
+--select item , count(customer_id) as "Cantidad item" from Orders group by item;
+
+
+--Having : restriccion verdadera 
+/*
+select item , count(customer_id) as "Cantidad item" 
+from Orders group by item
+Having count(customer_id) > 1;*/
+
+
+-- CASE NO EXITE IF
+/*
+SELECT *,
+  CASE
+    WHEN shipping_id = customer THEN 'good'
+    ELSE 'other'
+  END AS type
+FROM Shippings;*/
+
+/*
+SELECT *,
+  CASE
+    WHEN shipping_id = 1 THEN 'numero1'
+    WHEN shipping_id = 2 THEN 'numero2'
+    WHEN shipping_id = 3 THEN 'numero3'
+    WHEN shipping_id = 4 THEN 'numero4'
+    ELSE 'other'
+  END AS type
+FROM Shippings;*/
+
+--INNER JOIN  intercepto 
+/*
+SELECT Customers.customer_id, Customers.first_name, Customers.last_name, Orders.order_id, Orders.item, Orders.amount, Orders.total
+FROM Customers
+INNER JOIN Orders ON Customers.customer_id = Orders.customer_id;*/
+
+
+--LEFT JOIN  parte izquierda  (FROM Customers) y el intercepto si no hay es vacio
+/*
+SELECT Customers.customer_id, Customers.first_name, Customers.last_name, Orders.order_id, Orders.item, Orders.amount, Orders.total
+FROM Customers
+left JOIN Orders ON Customers.customer_id = Orders.customer_id;*/
+
+
+---RIGHT JOIN parte derecha y el intercepto
+
+/*forma si no se puede right join 
+SELECT Customers.customer_id, Customers.first_name, Customers.last_name, Customers.age, Customers.country, Orders.order_id, Orders.item, Orders.amount, Orders.total
+FROM Orders
+LEFT JOIN Customers ON Orders.customer_id = Customers.customer_id;*/
+
+
+/*forma con right 
+select table1.column1, table2.column2..
+from table1
+right join table2
+on table.common_field = table2.common_field*/
+
+--- UNION JOIN
+/*  UNION  unirlo los parametros en una columna 
+SELECT customer_id, first_name, last_name, age, country
+FROM Customers
+UNION
+SELECT customer_id, item , amount, NULL, NULL
+FROM Orders;*/
+
+
+--EXCEPT 
+--select customer_id from Customers 
+--where customer_id not in (select customer_id from Orders)
+
+
+
+--VIEWS : crea una tabla que no se guarda
+/*
+-- Crear la vista
+CREATE VIEW CustomerOrders AS
+SELECT Customers.customer_id, Customers.first_name, Customers.last_name, Customers.age, Customers.country, Orders.order_id, Orders.item, Orders.amount, Orders.total
+FROM Customers
+JOIN Orders ON Customers.customer_id = Orders.customer_id;
+
+-- Utilizar la vista en una consulta
+SELECT * FROM CustomerOrders;*/
+
+
+
+--INDEX:(INDEX) en una base de datos es una estructura que mejora la velocidad de búsqueda y recuperación de datos en una tabla , pero mucho almacenamiento y costoso
+-- Crear un índice en la columna customer_id de la tabla Customers
+--CREATE INDEX idx_customers_customer_id ON Customers(customer_id);
+
+
+--LENGTH  :longitud 
+--select * ,  length(first_name) as largo from Customers;
+
+-- UPPER : mayuscula
+--select upper(first_name) as mayuscula from Customers;
+
+-- LOWER : minuscula 
+--select lower(item) as minuscula from Orders;
+
+--REMPLACE : remplazar de forma de diccionario 
+--SELECT REPLACE(first_name, 'John', 'Robert') AS new_first_name
+--FROM Customers;
+
+-- TRIM :La función TRIM se utiliza para eliminar espacios en blanco o caracteres específicos del principio y/o final de una cadena
+--SELECT TRIM('   John   ') AS trimmed_name
+--FROM Customers;
+
